@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_IMAGE = "YOUR_DOCKER_USERNAME/flask-mysql-app:latest"
+        DOCKER_IMAGE = "madeeha2520/flask-mysql-app:latest"
         DOCKER_USER = credentials('docker-hub-username')
         DOCKER_PASS = credentials('docker-hub-password')
     }
@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/YOUR_USERNAME/flask-mysql-app.git'
+                git 'https://github.com/madeeha2520/flask-mysql-app'
             }
         }
         
@@ -49,12 +49,6 @@ pipeline {
                 sh 'kubectl get pods'
                 sh 'kubectl get svc'
             }
-        }
-    }
-    
-    post {
-        always {
-            sh 'docker system prune -f'
         }
     }
 }
